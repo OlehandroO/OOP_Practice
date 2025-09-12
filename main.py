@@ -90,6 +90,20 @@ class Reviewer(Mentor):
     def __str__(self):
         return (f'Имя: {self.name}\nФамилия: {self.surname}\n')
 
+def avg_lectures_grades(lectures, course):
+    all_grades = []
+    for lecture in lectures:
+        if course in lecture.grades:
+            all_grades.extend(lecture.grades[course])
+    return sum(all_grades) / len(all_grades)
+
+def avg_students_grades(students, course):
+    all_grades = []
+    for student in students:
+        if course in student.grades:
+            all_grades.extend(student.grades[course])
+    return sum(all_grades) / len(all_grades)
+
 
 best_student1 = Student('Ruoy', 'Eman', 'M')
 best_student2 = Student('Bob', 'Bobsky', 'M')
@@ -130,3 +144,8 @@ print(lector2)
 
 print(best_student1 > best_student2) #True
 print(lector1 > lector2) #False
+
+st = [best_student1, best_student2]
+le = [lector1, lector2]
+
+print(avg_lectures_grades(le,'Python'))
